@@ -33,3 +33,39 @@ Clone the repository and make the script executable:
 git clone [https://github.com/Cyber-Dipesh/integrity-check.git](https://github.com/Cyber-Dipesh/integrity-check.git)
 cd integrity-check
 chmod +x integrity-check
+
+📖 Usage Guide
+1. Initialize a Baseline
+Compute and store initial SHA-256 hashes for a file or directory.
+
+Bash
+./integrity-check init /path/to/monitor
+Use --force if you want to overwrite already tracked files.
+
+2. Verify System Integrity
+Check the current state of files against your stored baseline.
+
+Bash
+./integrity-check check /path/to/monitor
+3. Update Stored Baselines
+If you intentionally modified a file, update its baseline hash so it doesn't flag an alert.
+
+Bash
+./integrity-check update /path/to/monitor
+4. List Tracked Files
+View all currently tracked assets, their tracking initialization date, and last check times.
+
+Bash
+./integrity-check list
+5. Reset the Database
+Wipe the entire local hash database to start fresh (requires typing YES to confirm).
+
+Bash
+./integrity-check reset
+
+⚙️ How It Works
+init: Reads files in 64 KB chunks to efficiently calculate SHA-256 hashes regardless of file size.
+
+Storage: Writes entries to JSON format, applying strict owner read/write permissions so other local users can't edit your verification baselines.
+
+Alerting: During a check, it cross-references current file system states with the JSON data, automatically computing missing records and altered outputs.
