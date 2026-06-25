@@ -69,3 +69,4 @@ init: Reads files in 64 KB chunks to efficiently calculate SHA-256 hashes regard
 Storage: Writes entries to JSON format, applying strict owner read/write permissions so other local users can't edit your verification baselines.
 
 Alerting: During a check, it cross-references current file system states with the JSON data, automatically computing missing records and altered outputs.
+https://roadmap.sh/projects/file-integrity-checker
